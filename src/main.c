@@ -54,7 +54,6 @@ int	main(int ac, const char **av)
 	t_list	*a;
 	t_list	*b;
 
-
 	if (ac < 2)
 		return (0);
 	if (!init_stacks(&a, &b, ac, av))
