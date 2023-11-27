@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 15:33:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:31:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,15 @@ ssize_t	read_buffer(char *buf, int fd);
 size_t	find_new_line(char *buf, size_t *len);
 void	memmove_buffer(char *buf, size_t len);
 
-int		ft_printf(const char *format, ...);
-int		read_flag(const char *s, va_list *ap, int i, int *len);
-int		convert_flag(char c, va_list *ap);
+int		ft_printfd(int fd, const char *s, ...);
+int		read_flag(const char *s, va_list *ap, int *i, int *len);
+int		convert_flag(char c, va_list *ap, int fd);;
 int		count_putchar_fd(char c, int fd);
 int		count_putstr_fd(const char *s, int fd);
-int		ft_putnbr_base(long n, char *base);
-int		ft_putun_nbr_base(unsigned long n, char *base);
-int		s_flag(char *s);
-int		p_flag(unsigned long p);
+int		ft_putnbr_base_fd(long n, char *base, int fd);
+int		ft_putun_nbr_base_fd(unsigned long n, char *base, int fd);
+int		s_flag(char *s, int fd);
+int		p_flag(unsigned long p, int fd);
 int		ft_check_base(char *base, size_t b_size);
 
 #endif

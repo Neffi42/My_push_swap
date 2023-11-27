@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 16:36:44 by abasdere         ###   ########.fr       */
+/*   Created: 2023/11/27 16:03:03 by abasdere          #+#    #+#             */
+/*   Updated: 2023/11/27 16:36:23 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft.h"
 
-int	main(int ac, char **av)
+int	error(void)
 {
-	if (ac < 2)
-		return (0);
-	if (ac > 1)
-		ft_printfd(1, "%s\n", av[1]);
-	return (0);
+	ft_printfd(2, "Error\n");
+	return (-1);
 }
