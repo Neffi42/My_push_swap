@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 16:31:29 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:41:42 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ ssize_t	read_buffer(char *buf, int fd);
 size_t	find_new_line(char *buf, size_t *len);
 void	memmove_buffer(char *buf, size_t len);
 
-int		ft_printfd(int fd, const char *s, ...);
+int		ft_dprintf(int fd, const char *s, ...);
 int		read_flag(const char *s, va_list *ap, int *i, int *len);
 int		convert_flag(char c, va_list *ap, int fd);;
 int		count_putchar_fd(char c, int fd);
