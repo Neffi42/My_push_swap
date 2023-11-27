@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 10:46:39 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/27 15:33:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,28 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 200
+# endif
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_arg
+{
+	int		pad_flag;
+	void	*conv_flag;
+}	t_arg;
+
+# define CONV_FLAGS "cspdiuxX%"
+# define DECI_BASE  "0123456789"
+# define X_BASE_LO "0123456789abcdef"
+# define X_BASE_UP "0123456789ABCDEF"
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char const *s, int fd);
@@ -51,13 +73,6 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -67,5 +82,22 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+char	*get_next_line(int fd);
+char	*ft_strnjoin(char *result, char *buf, size_t n);
+ssize_t	read_buffer(char *buf, int fd);
+size_t	find_new_line(char *buf, size_t *len);
+void	memmove_buffer(char *buf, size_t len);
+
+int		ft_printf(const char *format, ...);
+int		read_flag(const char *s, va_list *ap, int i, int *len);
+int		convert_flag(char c, va_list *ap);
+int		count_putchar_fd(char c, int fd);
+int		count_putstr_fd(const char *s, int fd);
+int		ft_putnbr_base(long n, char *base);
+int		ft_putun_nbr_base(unsigned long n, char *base);
+int		s_flag(char *s);
+int		p_flag(unsigned long p);
+int		ft_check_base(char *base, size_t b_size);
 
 #endif
