@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 10:44:29 by abasdere         ###   ########.fr       */
+/*   Created: 2023/11/27 10:14:32 by abasdere          #+#    #+#             */
+/*   Updated: 2023/11/27 10:42:41 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+void	sa(int *a)
+{
+	(void)a;
+}
 
-# include "libft.h"
+void	sb(int *b)
+{
+	(void)b;
+}
 
-#endif
+void	ss(int *a, int *b)
+{
+	sa(a);
+	sb(b);
+}

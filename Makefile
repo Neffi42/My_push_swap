@@ -4,10 +4,11 @@ CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 INCLUDE = include/
 SRC_DIR = src
-SRC = ${addprefix ${SRC_DIR}/, push_swap.c}
+SRC = ${addprefix ${SRC_DIR}/, push_swap.c push.c swap.c\
+		rotate.c r_rotate.c}
 OBJ_DIR = obj
 OBJ = ${addprefix ${OBJ_DIR}/, ${SRC:.c=.o}}
-LIB_DIR = lib
+LIB_DIR = libft
 LIB = libft.a
 
 all: ${NAME}
@@ -15,18 +16,17 @@ all: ${NAME}
 ${NAME}: ${OBJ}
 	@make -C ${LIB_DIR}
 	@echo "* Assembling $@"
-	${CC} ${CFLAGS} ${OBJ} -L ${LIB_DIR}/${LIB} -o $@
+	@${CC} ${CFLAGS} ${OBJ} -o $@ ${LIB_DIR}/${LIB}
 
 ${OBJ_DIR}/%.o: %.c
 	@mkdir -p ${OBJ_DIR}
 	@mkdir -p ${OBJ_DIR}/${SRC_DIR}
-	@${CC} ${CFLAGS} -c $< -I ${INCLUDE} -L ${LIB_DIR}/${LIB} -o $@
+	@${CC} ${CFLAGS} -c $< -I ${INCLUDE} -o $@
 	@echo "- Compiling $<"
 
 clean:
 	@make clean -C ${LIB_DIR}
 	@echo "! Removing ${OBJ_DIR} files"
-	@${RM} ${OBJ}
 	@${RM} ${OBJ_DIR}
 
 fclean: clean
