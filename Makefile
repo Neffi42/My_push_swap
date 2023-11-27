@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
 INCLUDE = include/
 SRC_DIR = src
-SRC = ${addprefix ${SRC_DIR}/, push_swap.c push.c swap.c\
+SRC = ${addprefix ${SRC_DIR}/, main.c push.c swap.c\
 		rotate.c r_rotate.c error.c}
 OBJ_DIR = obj
 OBJ = ${addprefix ${OBJ_DIR}/, ${SRC:.c=.o}}

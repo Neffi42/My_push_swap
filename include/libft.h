@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 16:41:42 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:00:09 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
-typedef struct s_arg
-{
-	int		pad_flag;
-	void	*conv_flag;
-}	t_arg;
 
 # define CONV_FLAGS "cspdiuxX%"
 # define DECI_BASE  "0123456789"

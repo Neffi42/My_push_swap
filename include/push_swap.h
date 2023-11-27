@@ -6,12 +6,14 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 16:32:49 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:36:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include <stdlib.h>
 
 int	error(void);
 
