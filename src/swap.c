@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 09:28:29 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:54:10 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@ void	sx(t_list **x, char *s)
 	t_list	*next;
 	t_list	*tmp;
 
-	if (!(*x))
+	if (!(*x) && !(*x)->next)
 		return ;
 	next = (*x)->next;
-	if (!next)
-		return ;
 	tmp = *x;
 	tmp->next = next->next;
 	*x = next;
