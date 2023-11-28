@@ -5,7 +5,7 @@ RM = rm -rf
 INCLUDE = include/
 SRC_DIR = src
 SRC = ${addprefix ${SRC_DIR}/, main.c push.c swap.c\
-		rotate.c r_rotate.c error.c}
+		rotate.c r_rotate.c error.c utils.c}
 OBJ_DIR = obj
 OBJ = ${addprefix ${OBJ_DIR}/, ${SRC:.c=.o}}
 LIB_DIR = libft
