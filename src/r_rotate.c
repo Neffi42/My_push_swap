@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:39 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 14:51:56 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:12:38 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	rrx(t_list **x, char *s)
 
 	if (*x && (*x)->next)
 	{
+		before_last = (*x);
 		last = (*x)->next;
 		while (last->next)
 		{

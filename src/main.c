@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 16:44:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:18:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ static int	check_arg(const char *s)
 	return (1);
 }
 
-static void	print_list(t_list *x)
-{
-	if (!x || !x->content)
-	{
-		ft_dprintf(1, "empty\n\n");
-		return ;
-	}
-	ft_dprintf(1, "%d\n", *((int *)x->content));
-	while (x->next)
-	{
-		x = x->next;
-		if (x->content)
-			ft_dprintf(1, "%d\n", *((int *)x->content));
-	}
-	ft_dprintf(1, "\n");
-}
+// static void	print_list(t_list *x)
+// {
+// 	if (!x || !x->content)
+// 	{
+// 		ft_dprintf(1, "\nempty\n\n");
+// 		return ;
+// 	}
+// 	ft_dprintf(1, "\n%d\n", *((int *)x->content));
+// 	while (x->next)
+// 	{
+// 		x = x->next;
+// 		if (x->content)
+// 			ft_dprintf(1, "%d\n", *((int *)x->content));
+// 	}
+// 	ft_dprintf(1, "\n");
+// }
 
 static int	init_stack(t_list **a, t_list **b, int ac, const char **av)
 {
@@ -63,22 +63,24 @@ static int	init_stack(t_list **a, t_list **b, int ac, const char **av)
 	return (1);
 }
 
-static void	bubble_sort(t_list **a, t_list **b)
+static void	sort(t_list **a, t_list **b)
 {
+	t_list	*tmp;
+
 	while (*a)
 	{
-		while (!(*b) || !(*b)->next)
-			px(b, a, "pb");
-		if (!(*b)->content < !(*b)->next->content)
-			sx(b, "sb");
+		tmp = *a;
+		if (*b)
+		{
+			rx(a, "ra");
+			while (*b && *(int *)(*b)->content > *(int *)tmp->content)
+				px(a, b, "pa");
+			rrx(a, "rra");
+		}
+		px(b, a, "pb");
 	}
 	while (*b)
-	{
-		while (!(*a) || !(*a)->next)
-			px(a, b, "pa");
-		if (!(*a)->content < !(*a)->next->content)
-			sx(a, "sa");
-	}
+		px(a, b, "pa");
 }
 
 int	main(int ac, const char **av)
@@ -90,10 +92,6 @@ int	main(int ac, const char **av)
 		return (0);
 	if (!init_stack(&a, &b, ac, av))
 		return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), error());
-	print_list(a);
-	print_list(b);
-	bubble_sort(&a, &b);
-	print_list(a);
-	print_list(b);
+	sort(&a, &b);
 	return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), 0);
 }
