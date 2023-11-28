@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 17:36:06 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 09:28:25 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define PUSH_SWAP_H
 
 # include <stdlib.h>
+# include "libft.h"
 
-int	error(void);
+int		error(void);
+void	sx(t_list **x, char *s);
+void	ss(t_list **a, t_list **b);
 
 #endif

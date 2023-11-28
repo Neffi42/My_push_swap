@@ -6,12 +6,11 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:03:03 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 17:02:51 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 08:38:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 int	error(void)
 {

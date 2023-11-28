@@ -6,12 +6,11 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/27 17:58:36 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 09:29:21 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "libft.h"
 
 static int	check_arg(const char *s)
 {
@@ -22,6 +21,18 @@ static int	check_arg(const char *s)
 		s++;
 	}
 	return (1);
+}
+
+static void	print_list(t_list *x)
+{
+	if (!x)
+		return ;
+	ft_dprintf(1, "%d\n", *((int *)x->content));
+	while (x->next)
+	{
+		x = x->next;
+		ft_dprintf(1, "%d\n", *((int *)x->content));
+	}
 }
 
 static int	init_stacks(t_list **a, t_list **b, int ac, const char **av)
@@ -58,5 +69,8 @@ int	main(int ac, const char **av)
 		return (0);
 	if (!init_stacks(&a, &b, ac, av))
 		return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), error());
+	print_list(a);
+	ss(&a, &b);
+	print_list(a);
 	return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), 0);
 }
