@@ -1,0 +1,1 @@
+Créer les fonctions t_dlist dans la libft et tout switch en t_dlist. Créer des fonctions qui testent les deux stack en mm temps, exemple : first_and_last
