@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 14:55:04 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/28 16:44:47 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ static void	print_list(t_list *x)
 	ft_dprintf(1, "\n");
 }
 
-static int	init_stack(t_list **a, int ac, const char **av)
+static int	init_stack(t_list **a, t_list **b, int ac, const char **av)
 {
 	void	*p;
 	int		i;
 
 	i = 0;
 	*a = NULL;
+	*b = NULL;
 	while (++i < ac)
 	{
 		if (!check_arg(av[i]))
@@ -62,6 +63,24 @@ static int	init_stack(t_list **a, int ac, const char **av)
 	return (1);
 }
 
+static void	bubble_sort(t_list **a, t_list **b)
+{
+	while (*a)
+	{
+		while (!(*b) || !(*b)->next)
+			px(b, a, "pb");
+		if (!(*b)->content < !(*b)->next->content)
+			sx(b, "sb");
+	}
+	while (*b)
+	{
+		while (!(*a) || !(*a)->next)
+			px(a, b, "pa");
+		if (!(*a)->content < !(*a)->next->content)
+			sx(a, "sa");
+	}
+}
+
 int	main(int ac, const char **av)
 {
 	t_list	*a;
@@ -69,7 +88,12 @@ int	main(int ac, const char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!init_stack(&a, ac, av))
+	if (!init_stack(&a, &b, ac, av))
 		return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), error());
+	print_list(a);
+	print_list(b);
+	bubble_sort(&a, &b);
+	print_list(a);
+	print_list(b);
 	return (ft_lstclear(&a, &free), ft_lstclear(&b, &free), 0);
 }
