@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 11:28:26 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:19:44 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,39 +46,6 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 	return (1);
 }
 
-// static void	first_and_last(t_dlist **a, t_dlist **b, t_dlist *la, t_dlist *lb)
-// {
-// 	if (!is_node_sort(*a, la) && !is_node_sort(*b, lb))
-// 		rrr(a, b);
-// 	else if (!is_node_sort(*a, la))
-// 		rrx(a, "rra");
-// 	else if (!is_node_sort(*b, lb))
-// 		rrx(b, "rrb");
-// }
-
-static void	quicksort(t_dlist **a, t_dlist **b)
-{
-	t_dlist	*tmp;
-	t_dlist	*la;
-	// t_dlist	*lb;
-
-	la = ft_dlstlast(*a);
-	tmp = *a;
-	while (tmp != la)
-	{
-		if (!is_node_sort(tmp, tmp->next))
-		{
-			sx(a, "sa");
-			tmp = *a;
-		}
-		if (!is_node_sort(tmp, la))
-			rx(a, "ra");
-		else
-			px(b, a, "pb");
-		tmp = *a;
-	}
-}
-
 int	main(int ac, const char **av)
 {
 	t_dlist	*a;
@@ -90,11 +57,22 @@ int	main(int ac, const char **av)
 		return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), error());
 	print_dlist(a);
 	print_dlist(b);
-	quicksort(&a, &b);
+	ft_dprintf(1, "- sort -\n");
+	sort(&a, &b);
 	print_dlist(a);
 	print_dlist(b);
 	return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), 0);
 }
+
+// static void	first_and_last(t_dlist **a, t_dlist **b, t_dlist *la, t_dlist *lb)
+// {
+// 	if (!is_node_sort(*a, la) && !is_node_sort(*b, lb))
+// 		rrr(a, b);
+// 	else if (!is_node_sort(*a, la))
+// 		rrx(a, "rra");
+// 	else if (!is_node_sort(*b, lb))
+// 		rrx(b, "rrb");
+// }
 
 // static void	bubble_sort(t_dlist **a, t_dlist **b)
 // {

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 09:36:04 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:43:24 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "libft.h"
 
 int		error(void);
+void	sort(t_dlist **a, t_dlist **b);
 int		is_node_sort(t_dlist *x, t_dlist *y);
 int		is_list_sort(t_dlist *x);
 void	sx(t_dlist **x, char *s);
