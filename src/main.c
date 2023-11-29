@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 13:19:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:05:23 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,34 @@ static int	check_arg(const char *s)
 		if (!ft_isdigit(*s))
 			return (0);
 		s++;
+	}
+	return (1);
+}
+
+static int	check_dup(t_dlist **a)
+{
+	t_dlist	*tmp;
+	t_dlist	*next;
+	t_dlist	*prev;
+
+	tmp = *a;
+	while (tmp)
+	{
+		next = tmp->next;
+		prev = tmp->prev;
+		while (next)
+		{
+			if (*(int *)tmp->content == *(int *)next->content)
+				return (0);
+			next = next->next;
+		}
+		while (prev)
+		{
+			if (*(int *)tmp->content == *(int *)prev->content)
+				return (0);
+			prev = prev->prev;
+		}
+		tmp = tmp->next;
 	}
 	return (1);
 }
@@ -39,11 +67,13 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 		if (!p)
 			return (0);
 		*((int *)p) = ft_atoi(av[i]);
+		if (*((int *)p) <= 0)
+			return (0);
 		ft_dlstadd_back(a, ft_dlstnew(p));
 		if (i != ft_dlstsize(*a))
 			return (0);
 	}
-	return (1);
+	return (check_dup(a));
 }
 
 int	main(int ac, const char **av)
@@ -63,33 +93,3 @@ int	main(int ac, const char **av)
 	print_dlist(b);
 	return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), 0);
 }
-
-// static void	first_and_last(t_dlist **a, t_dlist **b, t_dlist *la, t_dlist *lb)
-// {
-// 	if (!is_node_sort(*a, la) && !is_node_sort(*b, lb))
-// 		rrr(a, b);
-// 	else if (!is_node_sort(*a, la))
-// 		rrx(a, "rra");
-// 	else if (!is_node_sort(*b, lb))
-// 		rrx(b, "rrb");
-// }
-
-// static void	bubble_sort(t_dlist **a, t_dlist **b)
-// {
-// 	t_dlist	*tmp;
-
-// 	while (*a)
-// 	{
-// 		tmp = *a;
-// 		if (*b)
-// 		{
-// 			rx(a, "ra");
-// 			while (*b && *(int *)(*b)->content > *(int *)tmp->content)
-// 				px(a, b, "pa");
-// 			rrx(a, "rra");
-// 		}
-// 		px(b, a, "pb");
-// 	}
-// 	while (*b)
-// 		px(a, b, "pa");
-// }
