@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 09:40:12 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:28:26 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,39 +46,36 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 	return (1);
 }
 
-static void	first_and_last(t_dlist **a, t_dlist **b, t_dlist *la, t_dlist *lb)
-{
-	if (!is_node_sort(*a, la) && !is_node_sort(*b, lb))
-		rrr(a, b);
-	else if (!is_node_sort(*a, la))
-		rrx(a, "rra");
-	else if (!is_node_sort(*b, lb))
-		rrx(b, "rrb");
-}
+// static void	first_and_last(t_dlist **a, t_dlist **b, t_dlist *la, t_dlist *lb)
+// {
+// 	if (!is_node_sort(*a, la) && !is_node_sort(*b, lb))
+// 		rrr(a, b);
+// 	else if (!is_node_sort(*a, la))
+// 		rrx(a, "rra");
+// 	else if (!is_node_sort(*b, lb))
+// 		rrx(b, "rrb");
+// }
 
-static void	sort(t_dlist **a, t_dlist **b)
+static void	quicksort(t_dlist **a, t_dlist **b)
 {
-	size_t	size_a;
-	size_t	x;
-	t_dlist	*last_a;
-	t_dlist	*last_b;
+	t_dlist	*tmp;
+	t_dlist	*la;
+	// t_dlist	*lb;
 
-	size_a = ft_dlstsize(*a);
-	x = 0;
-	while (!is_list_sort(*a))
+	la = ft_dlstlast(*a);
+	tmp = *a;
+	while (tmp != la)
 	{
-		while (x++ < size_a / 2)
+		if (!is_node_sort(tmp, tmp->next))
 		{
-			if (!is_node_sort(*a, (*a)->next))
-				sx(a, "sa");
-			px(b, a, "pb");
+			sx(a, "sa");
+			tmp = *a;
 		}
-		last_a = ft_dlstlast(*a);
-		last_b = ft_dlstlast(*b);
-		first_and_last(a, b, last_a, last_b);
-		// if (is_list_sort(b))
-		// 	while (*b)
-		// 		px(a, b, "pa");
+		if (!is_node_sort(tmp, la))
+			rx(a, "ra");
+		else
+			px(b, a, "pb");
+		tmp = *a;
 	}
 }
 
@@ -92,8 +89,10 @@ int	main(int ac, const char **av)
 	if (!init_stack(&a, &b, ac, av))
 		return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), error());
 	print_dlist(a);
-	sort(&a, &b);
+	print_dlist(b);
+	quicksort(&a, &b);
 	print_dlist(a);
+	print_dlist(b);
 	return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), 0);
 }
 

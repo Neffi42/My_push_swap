@@ -1,1 +1,1 @@
-Créer des fonctions qui testent les deux stack en mm temps, exemple : first_and_last
+reshape operation with double list
