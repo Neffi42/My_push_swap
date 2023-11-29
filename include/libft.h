@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 13:19:26 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:28:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_dlist
+{
+	void			*content;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}	t_dlist;
 
 # define CONV_FLAGS "cspdiuxX%"
 # define DECI_BASE  "0123456789"
@@ -67,15 +74,26 @@ char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
 t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+t_dlist	*ft_dlstnew(void *content);
+int		ft_dlstsize(t_dlist *lst);
+void	ft_dlstadd_front(t_dlist **lst, t_dlist *new);
+t_dlist	*ft_dlstlast(t_dlist *lst);
+void	ft_dlstadd_back(t_dlist **lst, t_dlist *new);
+void	ft_dlstdelone(t_dlist *lst, void (*del)(void *));
+void	ft_dlstclear(t_dlist **lst, void (*del)(void *));
+void	ft_dlstiter(t_dlist *lst, void (*f)(void *));
+t_dlist	*ft_dlstmap(t_dlist *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd);
 char	*ft_strnjoin(char *result, char *buf, size_t n);
@@ -85,7 +103,7 @@ void	memmove_buffer(char *buf, size_t len);
 
 int		ft_dprintf(int fd, const char *s, ...);
 int		read_flag(const char *s, va_list *ap, int *i, int *len);
-int		convert_flag(char c, va_list *ap, int fd);;
+int		convert_flag(char c, va_list *ap, int fd);
 int		count_putchar_fd(char c, int fd);
 int		count_putstr_fd(const char *s, int fd);
 int		ft_putnbr_base_fd(long n, char *base, int fd);
