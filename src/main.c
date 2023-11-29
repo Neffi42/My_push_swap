@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 16:05:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:10:47 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ int	main(int ac, const char **av)
 		return (0);
 	if (!init_stack(&a, &b, ac, av))
 		return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), error());
-	print_dlist(a);
-	print_dlist(b);
-	ft_dprintf(1, "- sort -\n");
+	print_dlist(a, 'a');
+	print_dlist(b, 'b');
+	ft_dprintf(1, "\t- sort -\n");
 	sort(&a, &b);
-	print_dlist(a);
-	print_dlist(b);
+	ft_dprintf(1, "\t- sort -\n\n");
+	print_dlist(a, 'a');
+	print_dlist(b, 'b');
 	return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), 0);
 }

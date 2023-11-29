@@ -6,73 +6,69 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 14:26:18 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:39:38 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-	parcourir toute la liste pour voir s'il est sort
+	- parcourir toute la liste pour voir s'il est sort
 	push dans b quand pas sort si on peut pas le swap ou le rotate
+	- radix
+	- insertion sort (avec pre sort)
 */
+
 void	sort(t_dlist **a, t_dlist **b)
 {
+	int		is_smallest;
+	int		nbr_rx;
+	int		nbr_rrx;
 	t_dlist	*tmp;
-	int		x;
-	int		y;
-	// t_dlist	*la;
-	// t_dlist	*lb;
 
-	while (!is_list_sort(*a))
+	while (*a)
 	{
-		// if (is_node_sort(*a, (*a)->next))
-		// 	rx(a, "ra");
-		// else
-		// {
-			// la = ft_dlstlast(*a);
-			tmp = (*a)->next;
-			if (is_node_sort(tmp, *a))
-				sx(a, "sa");
-			// else if (is_node_sort(la, *a))
-			// 	rx(a, "ra");
-			else
+		is_smallest = 1;
+		nbr_rx = 0;
+		nbr_rrx = 0;
+		if (is_node_sort((*a)->next, *a))
+			sx(a, "sa");
+		if (*b)
+		{
+			if (!is_node_sort(*b, *a))
+			{
+				tmp = (*b)->next;
+				while (tmp)
+				{
+					nbr_rx++;
+					if (is_node_sort(tmp, *a))
+						is_smallest = 0;
+					tmp = (*b)->next;
+				}
+				tmp = (*b)->prev;
+				while (tmp)
+				{
+					nbr_rrx++;
+					if (is_node_sort(tmp, *a) && is_smallest)
+						is_smallest = 0;
+					tmp = (*b)->prev;
+				}
+				if (!is_smallest)
+				{
+					if (nbr_rx <= nbr_rrx)
+						while (nbr_rx--)
+							rx(b, "rb");
+					else
+						while (nbr_rrx--)
+							rrx(b, "rrx");
+				}
+			}
+			if (is_node_sort(*b, *a) || is_smallest)
 				px(b, a, "pb");
-		// }
+		}
+		else
+			px(b, a, "pb");
 	}
 	while (*b)
-	{
-		if (!is_node_sort(*b, *a))
-		{
-			x = 0;
-			y = 0;
-			tmp = *b;
-			while (*b)
-			{
-				tmp = tmp->prev;
-				x++;
-				if (is_node_sort(tmp, *a))
-					break ;
-			}
-			tmp = *b;
-			while (*b)
-			{
-				tmp = tmp->next;
-				y++;
-				if (is_node_sort(tmp, *a))
-					break ;
-			}
-			if (x <= y)
-			{
-				while (x--)
-					rrx(b, "rrb");
-			}
-			else
-			{
-				while (y--)
-					rx(b, "rb");
-			}
-		}
 		px(a, b, "pa");
-	}
 }
