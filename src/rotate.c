@@ -6,21 +6,21 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:37 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 14:52:52 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:37:48 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rx(t_list **x, char *s)
+void	rx(t_dlist **x, char *s)
 {
-	t_list	*tmp;
-	t_list	*last;
+	t_dlist	*tmp;
+	t_dlist	*last;
 
 	if (*x && (*x)->next)
 	{
 		tmp = (*x)->next;
-		last = ft_lstlast(*x);
+		last = ft_dlstlast(*x);
 		(*x)->next = NULL;
 		last->next = *x;
 		*x = tmp;
@@ -28,7 +28,7 @@ void	rx(t_list **x, char *s)
 	ft_dprintf(1, "%s\n", s);
 }
 
-void	rr(t_list **a, t_list **b)
+void	rr(t_dlist **a, t_dlist **b)
 {
 	rx(a, "ra");
 	rx(b, "rb");

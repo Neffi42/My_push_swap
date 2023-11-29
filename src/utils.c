@@ -6,13 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 23:31:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 23:32:06 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:37:28 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_list(t_list *x)
+void	print_dlist(t_dlist *x)
 {
 	if (!x || !x->content)
 	{

@@ -6,16 +6,16 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:39 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/28 23:12:38 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:35:37 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rrx(t_list **x, char *s)
+void	rrx(t_dlist **x, char *s)
 {
-	t_list	*before_last;
-	t_list	*last;
+	t_dlist	*before_last;
+	t_dlist	*last;
 
 	if (*x && (*x)->next)
 	{
@@ -33,7 +33,7 @@ void	rrx(t_list **x, char *s)
 	ft_dprintf(1, "%s\n", s);
 }
 
-void	rrr(t_list **a, t_list **b)
+void	rrr(t_dlist **a, t_dlist **b)
 {
 	rrx(a, "rra");
 	rrx(b, "rrb");
