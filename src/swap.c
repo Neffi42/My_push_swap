@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 12:51:31 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:35:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void	sx(t_dlist **x, char *s)
 	tmp->prev = next;
 	*x = next;
 	(*x)->next = tmp;
-	ft_dprintf(1, "%s\n", s);
+	if (s)
+		ft_dprintf(1, "%s\n", s);
 }
 
 void	ss(t_dlist **a, t_dlist **b)
 {
-	sx(a, "sa");
-	sx(b, "sb");
+	sx(a, NULL);
+	sx(b, NULL);
+	ft_dprintf(1, "ss");
 }

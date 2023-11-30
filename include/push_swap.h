@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 14:25:51 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:23:05 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	rr(t_dlist **a, t_dlist **b);
 void	rrx(t_dlist **x, char *s);
 void	rrr(t_dlist **a, t_dlist **b);
 int		peek(t_dlist	*x);
-void	sort(t_dlist **a, t_dlist **b, int median);
+int		sort(t_dlist **a, t_dlist **b, int low, int high);
 int		is_node_sort(t_dlist *x, t_dlist *y);
 int		is_list_sort(t_dlist *x);
 void	free_stakcs(t_dlist **a, t_dlist **b);
@@ -32,6 +32,6 @@ int		error(void);
 int		find_median(t_dlist *x);
 
 void	print_dlist(t_dlist *x, char c);
-void	print_tab(int *tab, size_t i, size_t s_tab);
+void	print_tab(int *tab, size_t s_tab);
 
 #endif

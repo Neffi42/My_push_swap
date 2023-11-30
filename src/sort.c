@@ -6,62 +6,58 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 14:25:56 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:35:47 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort(t_dlist **a, t_dlist **b, int median)
+static int	fastest_to_top(t_dlist *x)
 {
-	int		is_smallest;
-	int		nbr_rx;
-	int		nbr_rrx;
+	t_dlist	*up;
+	t_dlist	*down;
+	int		u;
+	int		d;
+
+	if (!x)
+		return (0);
+	up = x->prev;
+	down = x->next;
+	u = 1;
+	d = -1;
+	while (up && ++u)
+		up = up->prev;
+	while (down && --d)
+		down = down->next;
+	if (u >= d)
+		return (d);
+	return (u);
+}
+
+static int	partition_list(t_dlist **a, t_dlist **b, int low, int high)
+{
+	int	pivot;
+
+	//update find median to add start and end point
+	pivot = find_median();
+}
+
+int	sort(t_dlist **a, t_dlist **b, int low, int high)
+{
+	int		pivot;
 	t_dlist	*tmp;
 
-	while (*a)
+	if (low < high)
 	{
-		is_smallest = 1;
-		nbr_rx = 0;
-		nbr_rrx = 0;
-		if (is_node_sort((*a)->next, *a))
-			sx(a, "sa");
-		if (*b)
-		{
-			if (!is_node_sort(*b, *a))
-			{
-				tmp = (*b)->next;
-				while (tmp)
-				{
-					nbr_rx++;
-					if (is_node_sort(tmp, *a))
-						is_smallest = 0;
-					tmp = (*b)->next;
-				}
-				tmp = (*b)->prev;
-				while (tmp)
-				{
-					nbr_rrx++;
-					if (is_node_sort(tmp, *a) && is_smallest)
-						is_smallest = 0;
-					tmp = (*b)->prev;
-				}
-				if (!is_smallest)
-				{
-					if (nbr_rx <= nbr_rrx)
-						while (nbr_rx--)
-							rx(b, "rb");
-					else
-						while (nbr_rrx--)
-							rrx(b, "rrx");
-				}
-			}
-			if (is_node_sort(*b, *a) || is_smallest)
-				px(b, a, "pb");
-		}
-		else
-			px(b, a, "pb");
+		pivot = partition_list(a, b, low, high);
+		if (pivot == -1)
+			return (0);
+		tmp = *a;
+		while (peek(tmp) != pivot)
+			tmp = tmp->next;
+		tmp = tmp->next;
+		if (!sort(a, b, low, pivot) || !sort(a, b, peek(tmp), high))
+			return (0);
 	}
-	while (*b)
-		px(a, b, "pa");
+	return (1);
 }

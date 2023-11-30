@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 23:31:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 14:22:36 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:20:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,27 @@ void	free_stakcs(t_dlist **a, t_dlist **b)
 
 void	print_dlist(t_dlist *x, char c)
 {
-	ft_dprintf(1, "%c:\n", c);
+	ft_dprintf(1, "%c: ", c);
 	if (!x || !x->content)
+		ft_dprintf(1, "empty\n");
+	else
 	{
-		ft_dprintf(1, "empty\n\n");
-		return ;
-	}
-	ft_dprintf(1, "%d\n", *((int *)x->content));
-	while (x->next)
-	{
-		x = x->next;
-		if (x->content)
-			ft_dprintf(1, "%d\n", *((int *)x->content));
+		ft_dprintf(1, "%d ", *((int *)x->content));
+		while (x->next)
+		{
+			x = x->next;
+			if (x->content)
+				ft_dprintf(1, "%d ", *((int *)x->content));
+		}
 	}
 	ft_dprintf(1, "\n");
 }
 
-void	print_tab(int *tab, size_t i, size_t s_tab)
+void	print_tab(int *tab, size_t s_tab)
 {
+	size_t	i;
+
+	i = 0;
 	while (i < s_tab)
 		ft_dprintf(1, "%d ", tab[i++]);
 	ft_dprintf(1, "\n");

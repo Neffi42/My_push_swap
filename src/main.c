@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 14:26:04 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:23:50 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,10 @@ int	main(int ac, const char **av)
 		return (free_stakcs(&a, &b), error());
 	print_dlist(a, 'a');
 	print_dlist(b, 'b');
-	median = find_median(a);
-	if (median == -1)
+	ft_dprintf(1, "\n");
+	if (!sort(&a, &b, peek(a), ft_dlstlast(a)))
 		return (free_stakcs(&a, &b), error());
-	ft_dprintf(1, "median: %d\n", median);
-	ft_dprintf(1, "\t- sort -\n");
-	sort(&a, &b, median);
-	ft_dprintf(1, "\t- sort -\n\n");
+	ft_dprintf(1, "\n");
 	print_dlist(a, 'a');
 	print_dlist(b, 'b');
 	return (free_stakcs(&a, &b), 0);
