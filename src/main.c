@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 21:58:29 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:26:04 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,22 @@ int	main(int ac, const char **av)
 {
 	t_dlist	*a;
 	t_dlist	*b;
+	int		median;
 
 	if (ac < 2)
 		return (0);
 	if (!init_stack(&a, &b, ac, av))
-		return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), error());
+		return (free_stakcs(&a, &b), error());
 	print_dlist(a, 'a');
 	print_dlist(b, 'b');
-	find_median(a);
-	// ft_dprintf(1, "\t- sort -\n");
-	// sort(&a, &b);
-	// ft_dprintf(1, "\t- sort -\n\n");
-	// print_dlist(a, 'a');
-	// print_dlist(b, 'b');
-	return (ft_dlstclear(&a, &free), ft_dlstclear(&b, &free), 0);
+	median = find_median(a);
+	if (median == -1)
+		return (free_stakcs(&a, &b), error());
+	ft_dprintf(1, "median: %d\n", median);
+	ft_dprintf(1, "\t- sort -\n");
+	sort(&a, &b, median);
+	ft_dprintf(1, "\t- sort -\n\n");
+	print_dlist(a, 'a');
+	print_dlist(b, 'b');
+	return (free_stakcs(&a, &b), 0);
 }

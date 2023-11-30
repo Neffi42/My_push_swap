@@ -6,23 +6,12 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:48:50 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 22:47:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:23:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-medianOfMedians(arr[1...n])
-    if(n < 5 return Select(arr[1...n], n/2))
-    Let M be an empty list
-    For i from 0 to n/5 - 1:
-        Let m = Select(arr[5i + 1...5i+5], 3)
-        Add m to M
-    Return QuickSelect(M[1...n/5], n/10)
-End medianOfMedians
-https://stackoverflow.com/questions/9489061/understanding-median-of-medians-algorithm
-*/
 static void	swap(int *tab, int a, int b)
 {
 	int	temp;
@@ -32,16 +21,18 @@ static void	swap(int *tab, int a, int b)
 	tab[b] = temp;
 }
 
-static size_t	partition(int *tab, size_t pivot, size_t j)
+static size_t	partition(int *tab, size_t pivot, size_t high)
 {
 	size_t	i;
+	size_t	j;
 
 	i = pivot;
+	j = high;
 	while (i < j)
 	{
-		while (tab[i] <= tab[pivot])
+		while (i < high && tab[i] <= tab[pivot])
 			i++;
-		while (tab[j] > tab[pivot])
+		while (j > pivot && tab[j] > tab[pivot])
 			j--;
 		if (i < j)
 			swap(tab, i, j);
@@ -50,7 +41,7 @@ static size_t	partition(int *tab, size_t pivot, size_t j)
 	return (j);
 }
 
-static void	quicksort(int *tab, size_t low, size_t high)
+static int	quicksort(int *tab, size_t low, size_t high)
 {
 	size_t	j;
 
@@ -60,21 +51,7 @@ static void	quicksort(int *tab, size_t low, size_t high)
 		quicksort(tab, low, j);
 		quicksort(tab, j + 1, high);
 	}
-}
-
-static int	median_of_medians(int *tab, size_t s_tab)
-{
-	int	median;
-
-	median = 0;
-	if (s_tab <= 5)
-	{
-		quicksort(tab, 0, s_tab - 1);
-		if (s_tab % 2)
-			s_tab++;
-		median = s_tab / 2;
-	}
-	return (median);
+	return (tab[low + ((high - low) / 2)]);
 }
 
 int	find_median(t_dlist *x)
@@ -94,14 +71,6 @@ int	find_median(t_dlist *x)
 		tab[i] = peek(x);
 		x = x->next;
 	}
-	i = -1;
-	while (++i < size_x)
-		ft_dprintf(1, "%d ", tab[i]);
-	ft_dprintf(1, "\n");
-	median = median_of_medians(tab, size_x);
-	i = -1;
-	while (++i < size_x)
-		ft_dprintf(1, "%d ", tab[i]);
-	ft_dprintf(1, "%ld\n", median);
+	median = quicksort(tab, 0, size_x - 1);
 	return (free(tab), median);
 }

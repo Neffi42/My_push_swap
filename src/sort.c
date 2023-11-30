@@ -6,20 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 16:39:38 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:25:56 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-	- parcourir toute la liste pour voir s'il est sort
-	push dans b quand pas sort si on peut pas le swap ou le rotate
-	- radix
-	- insertion sort (avec pre sort)
-*/
-
-void	sort(t_dlist **a, t_dlist **b)
+void	sort(t_dlist **a, t_dlist **b, int median)
 {
 	int		is_smallest;
 	int		nbr_rx;
