@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 13:08:11 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/01 16:21:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:33:41 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ t_dir	fastest_to_dest(t_dlist *x, int dest)
 	t_dir	dir;
 	t_dir	dir2;
 
-	init_dir(&dir, 1, 0);
-	init_dir(&dir2, 0, 0);
+	init_dir(&dir, 0, 0);
+	init_dir(&dir2, 1, 0);
 	tmp = go_next_to_index(x, dest, &dir);
 	if (!tmp && !go_next_to_index(go_extrem(x, 1), dest, &dir))
 		return (init_dir(&dir, -1, -1), dir);
-	tmp = go_prev_to_index(x, dest, &dir);
+	tmp = go_prev_to_index(x, dest, &dir2);
 	if (!tmp && !go_prev_to_index(go_extrem(x, 0), dest, &dir2))
 		return (init_dir(&dir2, -1, -1), dir2);
 	if (dir.move >= dir2.move)

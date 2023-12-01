@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/01 15:32:05 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:25:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,28 @@ static int	check_arg(const char *s)
 	return (1);
 }
 
-static int	check_dup(t_dlist **a)
+static int	check_dup(t_dlist *a)
 {
-	t_dlist	*tmp;
 	t_dlist	*next;
 	t_dlist	*prev;
 
-	tmp = *a;
-	while (tmp)
+	while (a)
 	{
-		next = tmp->next;
-		prev = tmp->prev;
+		next = a->next;
+		prev = a->prev;
 		while (next)
 		{
-			if (*(int *)tmp->content == *(int *)next->content)
+			if (*(int *)a->content == *(int *)next->content)
 				return (0);
 			next = next->next;
 		}
 		while (prev)
 		{
-			if (*(int *)tmp->content == *(int *)prev->content)
+			if (*(int *)a->content == *(int *)prev->content)
 				return (0);
 			prev = prev->prev;
 		}
-		tmp = tmp->next;
+		a = a->next;
 	}
 	return (1);
 }
@@ -73,7 +71,7 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 		if (i != ft_dlstsize(*a))
 			return (0);
 	}
-	return (check_dup(a));
+	return (check_dup(*a));
 }
 
 static void	init_index(t_dlist **a, size_t size_a)
