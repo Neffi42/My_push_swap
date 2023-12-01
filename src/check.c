@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 00:37:43 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 14:21:44 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:36 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_node_sort(t_dlist *x, t_dlist *y)
 		return (0);
 	if (!y)
 		return (1);
-	if (*(int *)x->content > *(int *)y->content)
+	if (peek(x) > peek(y))
 		return (0);
 	return (1);
 }

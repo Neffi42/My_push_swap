@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/01 09:57:31 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 15:32:05 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	main(int ac, const char **av)
 
 	if (ac < 2)
 		return (0);
-	if (!init_stack(&a, &b, ac, av))
+	if (!init_stack(&a, &b, ac, av) || is_list_sort(a))
 		return (free_stakcs(&a, &b), error());
 	init_index(&a, ft_dlstsize(a));
 	print_dlist(a, 'a');

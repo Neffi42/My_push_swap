@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 23:31:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/01 09:54:55 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:27:11 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@ int	peek(t_dlist	*x)
 	if (!x)
 		return (-1);
 	return (*(int *)x->content);
+}
+
+t_dlist	*find_in_list(t_dlist *x, int index)
+{
+	while (x && x->index != index)
+		x = x->next;
+	if (!x)
+		return (NULL);
+	return (x);
 }
 
 void	free_stakcs(t_dlist **a, t_dlist **b)
@@ -40,15 +49,5 @@ void	print_dlist(t_dlist *x, char c)
 				ft_dprintf(1, "%d(%d) ", *((int *)x->content), x->index);
 		}
 	}
-	ft_dprintf(1, "\n");
-}
-
-void	print_tab(int *tab, size_t s_tab)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < s_tab)
-		ft_dprintf(1, "%d ", tab[i++]);
 	ft_dprintf(1, "\n");
 }
