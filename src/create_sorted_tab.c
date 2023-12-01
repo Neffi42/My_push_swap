@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_median.c                                      :+:      :+:    :+:   */
+/*   create_sorted_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 21:48:50 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 16:21:11 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:10:59 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static size_t	partition(int *tab, size_t pivot, size_t high)
 	return (j);
 }
 
-static int	quicksort(int *tab, size_t low, size_t high)
+static void	quicksort(int *tab, size_t low, size_t high)
 {
 	size_t	j;
 
@@ -51,26 +51,22 @@ static int	quicksort(int *tab, size_t low, size_t high)
 		quicksort(tab, low, j);
 		quicksort(tab, j + 1, high);
 	}
-	return (tab[low + ((high - low) / 2)]);
 }
 
-int	find_median(t_dlist *x)
+int	*create_sorted_tab(t_dlist *x, size_t size_x)
 {
-	size_t	size_x;
 	size_t	i;
 	int		*tab;
-	int		median;
 
-	size_x = ft_dlstsize(x);
 	tab = malloc(size_x * sizeof(int));
 	if (!tab)
-		return (-1);
+		return (NULL);
 	i = -1;
 	while (++i < size_x)
 	{
 		tab[i] = peek(x);
 		x = x->next;
 	}
-	median = quicksort(tab, 0, size_x - 1);
-	return (free(tab), median);
+	quicksort(tab, 0, size_x - 1);
+	return (tab);
 }

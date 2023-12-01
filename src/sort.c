@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 16:35:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:54:02 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,30 @@ static int	fastest_to_top(t_dlist *x)
 	return (u);
 }
 
-static int	partition_list(t_dlist **a, t_dlist **b, int low, int high)
+static int	find_median(t_dlist **a)
 {
-	int	pivot;
+	t_dlist	*tmp;
+	size_t	med_index;
 
-	//update find median to add start and end point
-	pivot = find_median();
+	tmp = *a;
+	med_index = ft_dlstsize(tmp) - 1;
+	if (!med_index || med_index == 1)
+		return (med_index);
+	if (med_index % 2)
+		med_index = med_index / 2 + 1;
+	else
+		med_index = med_index / 2;
+	return (med_index);
 }
 
-int	sort(t_dlist **a, t_dlist **b, int low, int high)
+int	sort(t_dlist **a, t_dlist **b)
 {
 	int		pivot;
 	t_dlist	*tmp;
 
-	if (low < high)
-	{
-		pivot = partition_list(a, b, low, high);
-		if (pivot == -1)
-			return (0);
-		tmp = *a;
-		while (peek(tmp) != pivot)
-			tmp = tmp->next;
-		tmp = tmp->next;
-		if (!sort(a, b, low, pivot) || !sort(a, b, peek(tmp), high))
-			return (0);
-	}
+	pivot = find_median(a);
+	ft_dprintf(1, "median: %d\n", pivot);
+	fastest_to_top(*a);
+	tmp = *b;
 	return (1);
 }

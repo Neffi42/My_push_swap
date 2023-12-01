@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 16:23:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:57:31 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,45 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 	return (check_dup(a));
 }
 
+static void	init_index(t_dlist **a, size_t size_a)
+{
+	t_dlist	*tmp;
+	int		biggest;
+	size_t	i;
+
+	i = size_a;
+	while (i-- > 0)
+	{
+		tmp = *a;
+		biggest = -1;
+		while (tmp)
+		{
+			if (tmp->index == -1 && biggest < peek(tmp))
+				biggest = peek(tmp);
+			tmp = tmp->next;
+		}
+		tmp = *a;
+		while (biggest != -1 && tmp && biggest != peek(tmp))
+			tmp = tmp->next;
+		if (tmp)
+			tmp->index = i;
+	}
+}
+
 int	main(int ac, const char **av)
 {
 	t_dlist	*a;
 	t_dlist	*b;
-	int		median;
 
 	if (ac < 2)
 		return (0);
 	if (!init_stack(&a, &b, ac, av))
 		return (free_stakcs(&a, &b), error());
+	init_index(&a, ft_dlstsize(a));
 	print_dlist(a, 'a');
 	print_dlist(b, 'b');
 	ft_dprintf(1, "\n");
-	if (!sort(&a, &b, peek(a), ft_dlstlast(a)))
+	if (!sort(&a, &b))
 		return (free_stakcs(&a, &b), error());
 	ft_dprintf(1, "\n");
 	print_dlist(a, 'a');

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/29 09:28:28 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:52:23 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_dlist
 	void			*content;
 	struct s_dlist	*next;
 	struct s_dlist	*prev;
+	int				index;
 }	t_dlist;
 
 # define CONV_FLAGS "cspdiuxX%"

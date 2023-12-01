@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 23:31:28 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 15:20:06 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:54:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ void	print_dlist(t_dlist *x, char c)
 		ft_dprintf(1, "empty\n");
 	else
 	{
-		ft_dprintf(1, "%d ", *((int *)x->content));
+		ft_dprintf(1, "%d(%d) ", *((int *)x->content), x->index);
 		while (x->next)
 		{
 			x = x->next;
 			if (x->content)
-				ft_dprintf(1, "%d ", *((int *)x->content));
+				ft_dprintf(1, "%d(%d) ", *((int *)x->content), x->index);
 		}
 	}
 	ft_dprintf(1, "\n");
