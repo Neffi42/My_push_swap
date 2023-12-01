@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:39 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 15:35:39 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:52:06 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	rrr(t_dlist **a, t_dlist **b)
 {
 	rrx(a, NULL);
 	rrx(b, NULL);
-	ft_dprintf(1, "rrr");
+	ft_dprintf(1, "rrr\n");
 }

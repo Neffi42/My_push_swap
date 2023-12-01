@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:32 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 15:35:32 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:52:19 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	ss(t_dlist **a, t_dlist **b)
 {
 	sx(a, NULL);
 	sx(b, NULL);
-	ft_dprintf(1, "ss");
+	ft_dprintf(1, "ss\n");
 }
