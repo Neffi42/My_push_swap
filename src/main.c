@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/03 11:16:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:20:39 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	check_arg(const char *s, void	*p)
 	if (!tmp)
 		return (0);
 	if (strncmp(s, tmp, ft_strlen(s)))
-		return (0);
+		return (free(tmp), 0);
 	*(int *)p = x;
-	return (1);
+	return (free(tmp), 1);
 }
 
 static int	check_dup(t_dlist *a)
@@ -67,10 +67,10 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 		if (!p)
 			return (0);
 		if (!check_arg(av[i], p))
-			return (0);
+			return (free(p), 0);
 		ft_dlstadd_back(a, ft_dlstnew(p));
 		if (i != ft_dlstsize(*a))
-			return (0);
+			return (free(p), 0);
 	}
 	return (check_dup(*a));
 }
