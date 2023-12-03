@@ -6,20 +6,24 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/03 10:48:38 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:16:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	check_arg(const char *s)
+static int	check_arg(const char *s, void	*p)
 {
-	while (*s)
-	{
-		if (!ft_isdigit(*s))
-			return (0);
-		s++;
-	}
+	int		x;
+	char	*tmp;
+
+	x = ft_atoi(s);
+	tmp = ft_itoa(x);
+	if (!tmp)
+		return (0);
+	if (strncmp(s, tmp, ft_strlen(s)))
+		return (0);
+	*(int *)p = x;
 	return (1);
 }
 
@@ -59,13 +63,10 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 	*b = NULL;
 	while (++i < ac)
 	{
-		if (!check_arg(av[i]))
-			return (0);
 		p = malloc(sizeof(int));
 		if (!p)
 			return (0);
-		*((int *)p) = ft_atoi(av[i]);
-		if (*((int *)p) <= 0)
+		if (!check_arg(av[i], p))
 			return (0);
 		ft_dlstadd_back(a, ft_dlstnew(p));
 		if (i != ft_dlstsize(*a))
