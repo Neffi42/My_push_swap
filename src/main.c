@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/03 11:20:39 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:36:47 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 static void	init_index(t_dlist **a, size_t size_a)
 {
 	t_dlist	*tmp;
+	int		found_new;
 	int		biggest;
 	size_t	i;
 
@@ -85,15 +86,17 @@ static void	init_index(t_dlist **a, size_t size_a)
 	while (i-- > 0)
 	{
 		tmp = *a;
-		biggest = -1;
+		found_new = 0;
+		while (tmp && tmp->index != -1)
+			tmp = tmp->next;
 		while (tmp)
 		{
-			if (tmp->index == -1 && biggest < peek(tmp))
+			if (tmp->index == -1 && (!found_new++ || peek(tmp) > biggest))
 				biggest = peek(tmp);
 			tmp = tmp->next;
 		}
 		tmp = *a;
-		while (biggest != -1 && tmp && biggest != peek(tmp))
+		while (found_new && tmp && biggest != peek(tmp))
 			tmp = tmp->next;
 		if (tmp)
 			tmp->index = i;
