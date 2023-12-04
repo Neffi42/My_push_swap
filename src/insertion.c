@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 11:37:53 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/04 22:44:10 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	insertion(t_dlist **a, t_dlist **b)
 		px(a, b, 'a');
 		shift_back(a, &da, x, 'a');
 	}
+	print_dlist(*a, 'a');
 }

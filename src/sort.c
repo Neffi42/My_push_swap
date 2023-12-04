@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 11:27:04 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/04 22:32:39 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,41 +49,6 @@ static void	partition_stack(t_dlist **a, t_dlist **b, size_t size_a)
 	}
 	while (size_a-- > 3)
 		px(b, a, 'b');
-}
-
-static int	find_biggest_near_index(t_dlist *x, int index)
-{
-	while (x && x->index < index)
-		x = x->next;
-	if (!x)
-		return (-1);
-	return (x->index);
-}
-
-void	lowest_cost(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
-{
-	t_dlist	*tmp;
-	int		lowest;
-	int		sum_dir;
-
-	tmp = *b;
-	sum_dir = -1;
-	while (tmp)
-	{
-		*db = fastest_to_dest(tmp, (*b)->index);
-		db->mov++;
-		*da = fastest_to_dest(*a, find_biggest_near_index(*a, tmp->index));
-		if (sum_dir == -1 || sum_dir > da->mov + db->mov)
-		{
-			sum_dir = da->mov + db->mov;
-			lowest = tmp->index;
-		}
-		tmp = tmp->next;
-	}
-	tmp = go_to_index(*b, lowest, NULL, 0);
-	*db = fastest_to_dest(tmp, (*b)->index);
-	db->mov++;
-	*da = fastest_to_dest(*a, find_biggest_near_index(*a, lowest));
 }
 
 int	sort(t_dlist **a, t_dlist **b)
