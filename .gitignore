@@ -3,4 +3,5 @@ push_swap
 */*.o
 */*.a
 *.o
-push_swap_tester/
+push_swap_tester
+checker_linux

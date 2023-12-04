@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/03 11:36:47 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:04:55 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,13 @@ static int	check_dup(t_dlist *a)
 	return (1);
 }
 
-static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
+static int	init_stack(t_dlist **a, int ac, char **av, int offset)
 {
 	void	*p;
 	int		i;
 
-	i = 0;
+	i = -1 + offset;
 	*a = NULL;
-	*b = NULL;
 	while (++i < ac)
 	{
 		p = malloc(sizeof(int));
@@ -69,7 +68,8 @@ static int	init_stack(t_dlist **a, t_dlist **b, int ac, const char **av)
 		if (!check_arg(av[i], p))
 			return (free(p), 0);
 		ft_dlstadd_back(a, ft_dlstnew(p));
-		if (i != ft_dlstsize(*a))
+		if ((!offset && i + 1 != ft_dlstsize(*a)) || \
+		(offset && i != ft_dlstsize(*a)))
 			return (free(p), 0);
 	}
 	return (check_dup(*a));
@@ -103,23 +103,30 @@ static void	init_index(t_dlist **a, size_t size_a)
 	}
 }
 
-int	main(int ac, const char **av)
+int	main(int ac, char **av)
 {
 	t_dlist	*a;
 	t_dlist	*b;
 
 	if (ac < 2)
 		return (0);
-	if (!init_stack(&a, &b, ac, av))
+	b = NULL;
+	if (ac == 2)
+	{
+		ac = count_words(av[1], ' ');
+		av = ft_split(av[1], ' ');
+		if (!av)
+			return (error());
+		if (!init_stack(&a, ac, av, 0))
+			return (free_split(av), free_stakcs(&a, &b), error());
+		free_split(av);
+	}
+	else if (!init_stack(&a, ac, av, 1))
 		return (free_stakcs(&a, &b), error());
 	if (is_list_sort(a))
 		return (free_stakcs(&a, &b), 0);
 	init_index(&a, ft_dlstsize(a));
-	print_dlist(a, 'a');
-	print_dlist(b, 'b');
 	if (!sort(&a, &b))
 		return (free_stakcs(&a, &b), error());
-	print_dlist(a, 'a');
-	print_dlist(b, 'b');
 	return (free_stakcs(&a, &b), 0);
 }
