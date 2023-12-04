@@ -6,13 +6,13 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:37 by abasdere          #+#    #+#             */
-/*   Updated: 2023/11/30 15:35:37 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:21:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rx(t_dlist **x, char *s)
+void	rx(t_dlist **x, char c)
 {
 	t_dlist	*tmp;
 	t_dlist	*last;
@@ -27,13 +27,13 @@ void	rx(t_dlist **x, char *s)
 		last->next = *x;
 		*x = tmp;
 	}
-	if (s)
-		ft_dprintf(1, "%s\n", s);
+	if (c)
+		ft_dprintf(1, "r%c\n", c);
 }
 
 void	rr(t_dlist **a, t_dlist **b)
 {
-	rx(a, NULL);
-	rx(b, NULL);
+	rx(a, '\0');
+	rx(b, '\0');
 	ft_dprintf(1, "rr\n");
 }

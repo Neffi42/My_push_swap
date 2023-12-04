@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/03 10:51:50 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:27:04 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	sort_three(t_dlist **a)
 	while (!is_list_sort(*a))
 	{
 		if (size_a == 2 || !is_node_sort(*a, (*a)->next))
-			sx(a, "sa");
+			sx(a, 'a');
 		else
-			rrx(a, "rra");
+			rrx(a, 'a');
 	}
 }
 
@@ -37,37 +37,54 @@ static void	partition_stack(t_dlist **a, t_dlist **b, size_t size_a)
 	while (size_a > 3 && index != -1)
 	{
 		dir = fastest_to_dest(*a, index);
-		if (!dir.is_up)
-			while (dir.move--)
-				rx(a, "rx");
-		else if (dir.is_up > 0)
-			while (dir.move--)
-				rrx(a, "rrx");
-		px(b, a, "pb");
+		if (dir.up > 0)
+			while (dir.mov--)
+				rx(a, 'a');
+		else if (!dir.up)
+			while (dir.mov--)
+				rrx(a, 'a');
+		px(b, a, 'b');
 		size_a--;
 		index = still_el_sup_median(a, median);
 	}
 	while (size_a-- > 3)
-		px(b, a, "pb");
+		px(b, a, 'b');
 }
 
-//sort solo three then place valid index at good place
+static int	find_biggest_near_index(t_dlist *x, int index)
+{
+	while (x && x->index < index)
+		x = x->next;
+	if (!x)
+		return (-1);
+	return (x->index);
+}
 
-// static int	fastest_el_to_place(t_dlist **x)
-// {
-// 	size_t	i;
-// 	int		index;
-// 	t_dlist	*tmp;
+void	lowest_cost(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
+{
+	t_dlist	*tmp;
+	int		lowest;
+	int		sum_dir;
 
-// 	i = 0;
-// 	tmp = *x;
-// 	while (tmp)
-// 	{
-
-// 		tmp = tmp->next
-// 		i++;
-// 	}
-// }
+	tmp = *b;
+	sum_dir = -1;
+	while (tmp)
+	{
+		*db = fastest_to_dest(tmp, (*b)->index);
+		db->mov++;
+		*da = fastest_to_dest(*a, find_biggest_near_index(*a, tmp->index));
+		if (sum_dir == -1 || sum_dir > da->mov + db->mov)
+		{
+			sum_dir = da->mov + db->mov;
+			lowest = tmp->index;
+		}
+		tmp = tmp->next;
+	}
+	tmp = go_to_index(*b, lowest, NULL, 0);
+	*db = fastest_to_dest(tmp, (*b)->index);
+	db->mov++;
+	*da = fastest_to_dest(*a, find_biggest_near_index(*a, lowest));
+}
 
 int	sort(t_dlist **a, t_dlist **b)
 {
@@ -77,5 +94,7 @@ int	sort(t_dlist **a, t_dlist **b)
 	if (size_a > 3)
 		partition_stack(a, b, size_a);
 	sort_three(a);
+	if (*b)
+		insertion(a, b);
 	return (1);
 }
