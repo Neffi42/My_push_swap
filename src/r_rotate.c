@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 10:14:39 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 11:17:18 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:39:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	rrx(t_dlist **x, char c)
 		last->prev = NULL;
 		last->next = *x;
 		prev->next = NULL;
+		(*x)->prev = last;
 		*x = last;
 	}
 	if (c)

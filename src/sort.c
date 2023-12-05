@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 22:32:39 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:18:26 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ static void	partition_stack(t_dlist **a, t_dlist **b, size_t size_a)
 	index = still_el_sup_median(a, median);
 	while (size_a > 3 && index != -1)
 	{
-		dir = fastest_to_dest(*a, index);
-		if (dir.up > 0)
+		dir = fastest_to_dest(*a, index, 0);
+		if (dir.up == -1)
 			while (dir.mov--)
 				rx(a, 'a');
-		else if (!dir.up)
+		else if (dir.up == 1)
 			while (dir.mov--)
 				rrx(a, 'a');
 		px(b, a, 'b');

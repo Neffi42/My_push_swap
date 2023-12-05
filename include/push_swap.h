@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:42:16 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 11:27:13 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 11:32:46 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_dir
 {
 	int	up;
 	int	mov;
+	int	sa;
 }	t_dir;
 
 void	sx(t_dlist **x, char c);
@@ -35,7 +36,7 @@ int		sort(t_dlist **a, t_dlist **b);
 int		find_median(t_dlist **x);
 int		still_el_sup_median(t_dlist **x, int median);
 t_dlist	*go_to_index(t_dlist *x, int index, t_dir *dir, int up);
-t_dir	fastest_to_dest(t_dlist *x, int dest);
+t_dir	fastest_to_dest(t_dlist *x, int dest, int offset);
 void	lowest_cost(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db);
 void	insertion(t_dlist **a, t_dlist **b);
 
