@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:32:12 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 22:14:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:27:51 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,5 @@ void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 		}
 		tmp = tmp->next;
 	}
-	// ft_dprintf(1, "lowest: %d big_i: %d\n", lowest, find_big_i(a, lowest));
 	*db = cost_ab(a, b, da, lowest);
 }

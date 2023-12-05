@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 22:10:36 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:27:21 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,11 @@ void	insertion(t_dlist **a, t_dlist **b)
 	while (*b)
 	{
 		lowest_cost(*a, *b, &da, &db);
-		// two_shifts(a, b, &da, &db);
 		shift_list(b, &db, 0, 'b');
 		shift_list(a, &da, 0, 'a');
 		px(a, b, 'a');
 		if (da.sa)
 			sx(a, 'a');
-		// print_dlist(*a, 'a');
-		// print_dlist(*b, 'b');
 	}
 	shift_back(a, &da, 'a');
 }
