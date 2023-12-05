@@ -7,3 +7,4 @@ push_swap_tester
 checker_linux
 push_swap_visualizer/*
 imgui.ini
+.vscode

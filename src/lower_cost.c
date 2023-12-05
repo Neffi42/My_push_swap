@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:32:12 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 16:09:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:57:29 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,66 @@ static int	find_big_i(t_dlist *x, int index)
 	return (big_i);
 }
 
-void	calculate_cost(t_dlist *x, t_dir *d, int index, int is_b)
+void	calculate_cost_a(t_dlist *a, t_dir *da, int index, int sa)
 {
 	t_dlist	*tmp;
 	t_dir	dlast;
 
-	tmp = ft_dlstlast(x);
+	tmp = ft_dlstlast(a);
 	if (tmp->index == index)
-		init_dir(d, 0, is_b, 0);
-	else if (x->index == index)
-		init_dir(d, 0, 0, 1 - is_b);
+		init_dir(da, 0, 0, 0);
+	else if (a->index == index)
+		init_dir(da, 0, 0, sa);
 	else
 	{
-		init_dir(d, 0, 0, 1 - is_b);
-		init_dir(&dlast, 1, 1, 1 - is_b);
-		while (x->index < index && ++d->mov)
-			x = x->next;
+		init_dir(da, 0, 0, sa);
+		init_dir(&dlast, 1, 1, sa);
+		while (a->index < index && ++da->mov)
+			a = a->next;
 		while (tmp->index < index && ++dlast.mov)
 			tmp = tmp->prev;
-		if (d->mov > dlast.mov)
-			*d = dlast;
+		if (da->mov > dlast.mov)
+			*da = dlast;
 	}
 }
+
+void	calculate_cost_b(t_dlist *b, t_dir *db, int index)
+{
+	t_dlist	*tmp;
+	t_dir	dlast;
+
+	tmp = ft_dlstlast(b);
+	if (tmp->index == index)
+		init_dir(db, 0, 1, 0);
+	else if (b->index == index)
+		init_dir(db, 0, 0, 0);
+	else
+	{
+		init_dir(db, 0, 0, 0);
+		init_dir(&dlast, 1, 1, 0);
+		while (b->index < index && ++db->mov)
+			b = b->next;
+		while (tmp->index < index && ++dlast.mov)
+			tmp = tmp->prev;
+		if (db->mov > dlast.mov)
+			*db = dlast;
+	}
+}
+
+static t_dir	cost_ab(t_dlist *a, t_dlist *b, t_dir *da, int index)
+{
+	int		big_i;
+	t_dir	db;
+
+	big_i = find_big_i(a, index);
+	if (big_i < index)
+		calculate_cost_a(a, da, big_i, 1);
+	else
+		calculate_cost_a(a, da, big_i, 0);
+	calculate_cost_b(b, &db, index);
+	return (db);
+}
+
 
 void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 {
@@ -70,8 +108,7 @@ void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 	cost = -1;
 	while (tmp)
 	{
-		calculate_cost(a, da, find_big_i(a, tmp->index), 0);
-		calculate_cost(b, db, tmp->index, 1);
+		*db = cost_ab(a, b, da, tmp->index);
 		if (cost == -1 || cost > da->mov + db->mov)
 		{
 			cost = da->mov + db->mov;
@@ -81,11 +118,7 @@ void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 	}
 	cost = find_big_i(a, lowest);
 	ft_dprintf(1, "lowest: %d big_i: %d\n", lowest, cost);
-	calculate_cost(a, da, cost, 0);
-	if (cost < lowest)
-		calculate_cost(b, db, lowest, 0);
-	else
-		calculate_cost(b, db, lowest, 1);
+	*db = cost_ab(a, b, da, tmp->index);
 }
 
 int	lowest_cost_up_med(t_dlist *x, t_dir *d, int median)

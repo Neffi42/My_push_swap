@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 16:11:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:29:07 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // 	if (!da->up && db->mov > 1 && da->mov > da->sa && da->up == db->up)
 // 		while (da->mov-- > da->sa && db->mov-- > 1)
 // 			rr(a, b);
-// 	else if (da->up && db->mov > 1 && da->mov > da->sa \
+// 	else if (da->up && db->mov > 1 && da->mov > da->sa
 // 	&& da->up == db->up)
 // 		while (da->mov-- > da->sa && db->mov-- > 1)
 // 			rrr(a, b);
@@ -60,8 +60,8 @@ void	insertion(t_dlist **a, t_dlist **b)
 		shift_list(b, &db, 0, 'b');
 		shift_list(a, &da, 0, 'a');
 		px(a, b, 'a');
-		// if (da.sa)
-		// 	sx(a, 'a');
+		if (da.sa)
+			sx(a, 'a');
 	}
 	// shift_back(a, &da, 'a');
 }
