@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:32:12 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 20:34:21 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:14:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	calculate_cost_a(t_dlist *a, t_dir *da, int index, int sa)
 	if (a->index == index)
 		init_dir(da, 0, 0, sa);
 	else if (tmp->index == index)
-		init_dir(da, 0, 0, 0);
+		init_dir(da, 1, 1, sa);
 	else
 	{
 		init_dir(da, 0, 0, sa);
@@ -83,7 +83,7 @@ void	calculate_cost_b(t_dlist *b, t_dir *db, int index)
 	if (b->index == index)
 		init_dir(db, 0, 0, 0);
 	else if (tmp->index == index)
-		init_dir(db, 0, 1, 0);
+		init_dir(db, 1, 1, 0);
 	else
 	{
 		init_dir(db, 0, 0, 0);
@@ -115,5 +115,6 @@ void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 		}
 		tmp = tmp->next;
 	}
+	// ft_dprintf(1, "lowest: %d big_i: %d\n", lowest, find_big_i(a, lowest));
 	*db = cost_ab(a, b, da, lowest);
 }

@@ -6,21 +6,33 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 20:34:55 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 22:10:36 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
-{
-	if (!da->up && db->mov > 0 && da->mov > 0 && da->up == db->up)
-		while (da->mov-- > 0 && db->mov-- > 0)
-			rr(a, b);
-	else if (da->up && db->mov > 0 && da->mov > 0 && da->up == db->up)
-		while (da->mov-- > 0 && db->mov-- > 0)
-			rrr(a, b);
-}
+// static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
+// {
+// 	if (!da->up && da->up == db->up)
+// 	{
+// 		while (da->mov-- > 0 && db->mov-- > 0)
+// 		{
+// 			rr(a, b);
+// 			da->mov--;
+// 			db->mov--;
+// 		}
+// 	}
+// 	else if (da->up && da->up == db->up)
+// 	{
+// 		while (da->mov-- > 0 && db->mov-- > 0)
+// 		{
+// 			rrr(a, b);
+// 			da->mov--;
+// 			db->mov--;
+// 		}
+// 	}
+// }
 
 static void	shift_back(t_dlist **a, t_dir *da, char c)
 {
@@ -51,12 +63,14 @@ void	insertion(t_dlist **a, t_dlist **b)
 	while (*b)
 	{
 		lowest_cost(*a, *b, &da, &db);
-		two_shifts(a, b, &da, &db);
+		// two_shifts(a, b, &da, &db);
 		shift_list(b, &db, 0, 'b');
 		shift_list(a, &da, 0, 'a');
 		px(a, b, 'a');
 		if (da.sa)
 			sx(a, 'a');
+		// print_dlist(*a, 'a');
+		// print_dlist(*b, 'b');
 	}
 	shift_back(a, &da, 'a');
 }
