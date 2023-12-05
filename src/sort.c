@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 15:26:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:34:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ int	sort(t_dlist **a, t_dlist **b)
 {
 	size_t	size_a;
 
-	print_dlist(*a, 'a');
-	print_dlist(*b, 'b');
+	// print_dlist(*a, 'a');
+	// print_dlist(*b, 'b');
 	size_a = ft_dlstsize(*a);
 	if (size_a > 3)
 		partition_stack(a, b, size_a);
 	sort_three(a);
 	if (*b)
 		insertion(a, b);
-	print_dlist(*a, 'a');
-	print_dlist(*b, 'b');
+	// print_dlist(*a, 'a');
+	// print_dlist(*b, 'b');
 	return (1);
 }
