@@ -6,42 +6,42 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 12:35:01 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:11:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
-{
-	if (da->up == -1 && db->mov > 1 && da->mov > da->sa && da->up == db->up)
-		while (da->mov-- > da->sa && db->mov-- > 1)
-			rr(a, b);
-	else if (da->up == 1 && db->mov > 1 && da->mov > da->sa \
-	&& da->up == db->up)
-		while (da->mov-- > da->sa && db->mov-- > 1)
-			rrr(a, b);
-}
+// static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
+// {
+// 	if (!da->up && db->mov > 1 && da->mov > da->sa && da->up == db->up)
+// 		while (da->mov-- > da->sa && db->mov-- > 1)
+// 			rr(a, b);
+// 	else if (da->up && db->mov > 1 && da->mov > da->sa \
+// 	&& da->up == db->up)
+// 		while (da->mov-- > da->sa && db->mov-- > 1)
+// 			rrr(a, b);
+// }
 
-static void	shift_list(t_dlist **x, t_dir *d, int end, char c)
+// static void	shift_back(t_dlist **a, t_dir *da, char c)
+// {
+// 	calculate_cost(*a, da, 0);
+// 	if (da->up)
+// 		while (da->mov-- > 0)
+// 			rx(a, c);
+// 	else if (!da->up)
+// 		while (da->mov-- > 0)
+// 			rrx(a, c);
+// }
+
+void	shift_list(t_dlist **x, t_dir *d, int end, char c)
 {
-	if (d->up == -1)
+	if (!d->up)
 		while (d->mov-- > end)
 			rx(x, c);
-	else if (d->up == 1)
+	else if (d->up)
 		while (d->mov-- > end)
 			rrx(x, c);
-}
-
-static void	shift_back(t_dlist **a, t_dir *da, char c)
-{
-	*da = fastest_to_dest(go_to_index(*a, 0, NULL, 0), (*a)->index, 0);
-	if (da->up == 1)
-		while (da->mov-- > 0)
-			rx(a, c);
-	else if (da->up == -1)
-		while (da->mov-- > 0)
-			rrx(a, c);
 }
 
 void	insertion(t_dlist **a, t_dlist **b)
@@ -53,18 +53,15 @@ void	insertion(t_dlist **a, t_dlist **b)
 	{
 		print_dlist(*a, 'a');
 		print_dlist(*b, 'b');
-		lowest_cost(a, b, &da, &db);
+		lowest_cost(*a, *b, &da, &db);
 		ft_dprintf(1, "a: u:%d m:%d s:%d\n", da.up, da.mov, da.sa);
 		ft_dprintf(1, "b: u:%d m:%d s:%d\n", db.up, db.mov, db.sa);
-		two_shifts(a, b, &da, &db);
-		shift_list(b, &db, 1, 'b');
-		shift_list(a, &da, da.sa, 'a');
+		// two_shifts(a, b, &da, &db);
+		shift_list(b, &db, 0, 'b');
+		shift_list(a, &da, 0, 'a');
 		px(a, b, 'a');
-		if (da.sa)
-			sx(a, 'a');
+		// if (da.sa)
+		// 	sx(a, 'a');
 	}
-	shift_back(a, &da, 'a');
-	print_dlist(*a, 'a');
-	print_dlist(*b, 'b');
-	// ft_dprintf(1, "sizea:%d sizeb:%d\n", ft_dlstsize(*a), ft_dlstsize(*b));
+	// shift_back(a, &da, 'a');
 }
