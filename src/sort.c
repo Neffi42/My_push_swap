@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:42:23 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 11:25:48 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 13:45:54 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,34 @@ static void	sort_three(t_dlist **a)
 	}
 }
 
-static void	partition_stack(t_dlist **a, t_dlist **b, size_t size_a)
+static void	partition(t_dlist **a, t_dlist **b, size_t *size_a, int median)
 {
-	int		median;
 	t_dir	d;
+	int		last;
 
-	median = find_median(*a);
-	while (size_a > 3 && lowest_cost_up_med(*a, &d, median))
+	last = -1;
+	while (*size_a > 3 && lowest_cost_up_med(*a, &d, median, last))
 	{
 		shift_list(a, &d, 0, 'a');
+		last = (*a)->index;
 		px(b, a, 'b');
-		(size_a)--;
+		(*size_a)--;
 	}
-	while (size_a-- > 3)
-		px(b, a, 'b');
 }
 
 int	sort(t_dlist **a, t_dlist **b)
 {
 	size_t	size_a;
+	int		median;
 
 	size_a = ft_dlstsize(*a);
 	if (size_a > 3)
-		partition_stack(a, b, size_a);
+	{
+		median = find_median(*a);
+		partition(a, b, &size_a, median);
+		while (size_a-- > 3)
+			px(b, a, 'b');
+	}
 	sort_three(a);
 	if (*b)
 		insertion(a, b);
