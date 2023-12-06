@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:19:46 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/04 16:37:30 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:45:38 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
-void	quicksort(int *tab, size_t low, size_t high);
+void	ft_quicksort_int_tab(int *tab, size_t low, size_t high);
 
 t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
