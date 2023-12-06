@@ -1,4 +1,5 @@
 NAME = push_swap
+BONUS = checker
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
@@ -7,8 +8,11 @@ SRC_DIR = src
 SRC = ${addprefix ${SRC_DIR}/, main.c push.c swap.c\
 		rotate.c r_rotate.c error.c utils.c find_median.c\
 		direction.c check.c sort.c insertion.c lower_cost.c}
+BONUS_DIR = bonus
+BONUS_SRC = ${addprefix ${SRC_DIR}/${BONUS_DIR}/, test.c}
 OBJ_DIR = obj
 OBJ = ${addprefix ${OBJ_DIR}/, ${SRC:.c=.o}}
+BONUS_OBJ = ${addprefix ${OBJ_DIR}/, ${BONUS_SRC:.c=.o}}
 LIB_DIR = libft
 LIB = libft.a
 
@@ -22,6 +26,7 @@ ${NAME}: ${OBJ}
 ${OBJ_DIR}/%.o: %.c
 	@mkdir -p ${OBJ_DIR}
 	@mkdir -p ${OBJ_DIR}/${SRC_DIR}
+	@mkdir -p ${OBJ_DIR}/${SRC_DIR}/${BONUS_DIR}
 	@${CC} ${CFLAGS} -c $< -I ${INCLUDE} -o $@
 	@echo "- Compiling $<"
 
@@ -35,9 +40,17 @@ fclean: clean
 	@echo "! Removing ${NAME}"
 	@${RM} ${NAME}
 
+clean_bonus: fclean
+	@echo "! Removing ${BONUS}"
+	@${RM} ${BONUS}
+
 re: fclean all
+
+bonus: all ${BONUS_OBJ}
+	@echo "* Assembling ${BONUS}"
+	@${CC} ${CFLAGS} ${BONUS_OBJ} -o ${BONUS} ${LIB_DIR}/${LIB}
 
 norm:
 	@norminette ${SRC_DIR} | awk '/Error/'
 
-.PHONY = all clean fclean re norm
+.PHONY = all clean fclean re norm bonus
