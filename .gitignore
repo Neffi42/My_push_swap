@@ -4,3 +4,6 @@ push_swap
 */*.a
 *.o
 checker_linux
+push_swap_visualizer
+push_swap_tester
+imgui.ini

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:32:12 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 22:27:51 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:32:15 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,77 +37,78 @@ static int	find_big_i(t_dlist *x, int index)
 	return (big_i);
 }
 
-static t_dir	cost_ab(t_dlist *a, t_dlist *b, t_dir *da, int index)
+static void	cost_ab(t_dlist *a, t_dlist *b, t_dir **d, int index)
 {
 	int		big_i;
-	t_dir	db;
 
+	calculate_cost_b(b, d, index);
 	big_i = find_big_i(a, index);
 	if (big_i < index)
-		calculate_cost_a(a, da, big_i, 1);
+		calculate_cost_a(a, d, big_i, 1);
 	else
-		calculate_cost_a(a, da, big_i, 0);
-	calculate_cost_b(b, &db, index);
-	return (db);
+		calculate_cost_a(a, d, big_i, 0);
 }
 
-void	calculate_cost_a(t_dlist *a, t_dir *da, int index, int sa)
+void	calculate_cost_a(t_dlist *a, t_dir **d, int index, int spec)
 {
 	t_dlist	*tmp;
 	t_dir	dlast;
 
 	tmp = ft_dlstlast(a);
 	if (a->index == index)
-		init_dir(da, 0, 0, sa);
+		init_dir(d[0], 0, 0, spec);
 	else if (tmp->index == index)
-		init_dir(da, 1, 1, sa);
+		init_dir(d[0], 1, 1, spec);
 	else
 	{
-		init_dir(da, 0, 0, sa);
-		init_dir(&dlast, 1, 1, sa);
-		while (a->index != index && ++da->mov)
+		init_dir(d[0], 0, 0, spec);
+		init_dir(&dlast, 1, 1, spec);
+		while (a->index != index && ++(d[0])->mov)
 			a = a->next;
 		while (tmp->index != index && ++dlast.mov)
 			tmp = tmp->prev;
-		if (da->mov > dlast.mov)
-			*da = dlast;
+		if (d[0]->mov > dlast.mov)
+			*(d[0]) = dlast;
 	}
 }
 
-void	calculate_cost_b(t_dlist *b, t_dir *db, int index)
+void	calculate_cost_b(t_dlist *b, t_dir **d, int index)
 {
 	t_dlist	*tmp;
 	t_dir	dlast;
 
 	tmp = ft_dlstlast(b);
 	if (b->index == index)
-		init_dir(db, 0, 0, 0);
+		init_dir(d[1], 0, 0, 0);
 	else if (tmp->index == index)
-		init_dir(db, 1, 1, 0);
+		init_dir(d[1], 1, 1, 0);
 	else
 	{
-		init_dir(db, 0, 0, 0);
+		init_dir(d[1], 0, 0, 0);
 		init_dir(&dlast, 1, 1, 0);
-		while (b->index != index && ++db->mov)
+		while (b->index != index && ++(d[1])->mov)
 			b = b->next;
 		while (tmp->index != index && ++dlast.mov)
 			tmp = tmp->prev;
-		if (db->mov > dlast.mov)
-			*db = dlast;
+		if (d[1]->mov > dlast.mov)
+			*(d[1]) = dlast;
 	}
 }
 
 void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 {
 	t_dlist	*tmp;
+	t_dir	*d[2];
 	int		lowest;
 	int		cost;
 
 	tmp = b;
+	d[0] = da;
+	d[1] = db;
 	cost = -1;
 	while (tmp)
 	{
-		*db = cost_ab(a, b, da, tmp->index);
+		cost_ab(a, b, d, tmp->index);
 		if (cost == -1 || cost > da->mov + db->mov)
 		{
 			cost = da->mov + db->mov;
@@ -115,5 +116,5 @@ void	lowest_cost(t_dlist *a, t_dlist *b, t_dir *da, t_dir *db)
 		}
 		tmp = tmp->next;
 	}
-	*db = cost_ab(a, b, da, lowest);
+	cost_ab(a, b, d, lowest);
 }

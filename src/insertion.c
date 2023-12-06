@@ -6,37 +6,43 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/05 22:27:21 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:35:02 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
-// {
-// 	if (!da->up && da->up == db->up)
-// 	{
-// 		while (da->mov-- > 0 && db->mov-- > 0)
-// 		{
-// 			rr(a, b);
-// 			da->mov--;
-// 			db->mov--;
-// 		}
-// 	}
-// 	else if (da->up && da->up == db->up)
-// 	{
-// 		while (da->mov-- > 0 && db->mov-- > 0)
-// 		{
-// 			rrr(a, b);
-// 			da->mov--;
-// 			db->mov--;
-// 		}
-// 	}
-// }
+static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
+{
+	if (!da->up && da->up == db->up)
+	{
+		while (da->mov-- > 0 && db->mov-- > 0)
+		{
+			rr(a, b);
+			da->mov--;
+			db->mov--;
+		}
+	}
+	else if (da->up && da->up == db->up)
+	{
+		while (da->mov-- > 0 && db->mov-- > 0)
+		{
+			rrr(a, b);
+			da->mov--;
+			db->mov--;
+		}
+	}
+}
 
 static void	shift_back(t_dlist **a, t_dir *da, char c)
 {
-	calculate_cost_a(*a, da, 0, 0);
+	t_dir	db;
+	t_dir	*d[2];
+
+	init_dir(&db, 0, 0, 0);
+	d[0] = da;
+	d[1] = &db;
+	calculate_cost_a(*a, d, 0, 0);
 	if (!da->up)
 		while (da->mov-- > 0)
 			rx(a, c);
@@ -63,10 +69,12 @@ void	insertion(t_dlist **a, t_dlist **b)
 	while (*b)
 	{
 		lowest_cost(*a, *b, &da, &db);
+		if (db.spec)
+			two_shifts(a, b, &da, &db);
 		shift_list(b, &db, 0, 'b');
 		shift_list(a, &da, 0, 'a');
 		px(a, b, 'a');
-		if (da.sa)
+		if (da.spec)
 			sx(a, 'a');
 	}
 	shift_back(a, &da, 'a');
