@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 09:35:02 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:18:19 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
 {
-	if (!da->up && da->up == db->up)
+	if (!da->up)
 	{
-		while (da->mov-- > 0 && db->mov-- > 0)
+		while (da->mov > 0 && db->mov > 0)
 		{
 			rr(a, b);
 			da->mov--;
 			db->mov--;
 		}
 	}
-	else if (da->up && da->up == db->up)
+	else if (da->up)
 	{
-		while (da->mov-- > 0 && db->mov-- > 0)
+		while (da->mov > 0 && db->mov > 0)
 		{
 			rrr(a, b);
 			da->mov--;
@@ -71,8 +71,8 @@ void	insertion(t_dlist **a, t_dlist **b)
 		lowest_cost(*a, *b, &da, &db);
 		if (db.spec)
 			two_shifts(a, b, &da, &db);
-		shift_list(b, &db, 0, 'b');
 		shift_list(a, &da, 0, 'a');
+		shift_list(b, &db, 0, 'b');
 		px(a, b, 'a');
 		if (da.spec)
 			sx(a, 'a');

@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:32:12 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 09:32:15 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:16:37 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static void	cost_ab(t_dlist *a, t_dlist *b, t_dir **d, int index)
 		calculate_cost_a(a, d, big_i, 1);
 	else
 		calculate_cost_a(a, d, big_i, 0);
+	if (d[1]->up == d[0]->up)
+		d[1]->spec = 1;
 }
 
 void	calculate_cost_a(t_dlist *a, t_dir **d, int index, int spec)
