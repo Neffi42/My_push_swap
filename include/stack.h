@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 09:33:13 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 09:35:00 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:20:20 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 # include "libft.h"
 
 void	sx(t_dlist **x, char c);
-void	ss(t_dlist **a, t_dlist **b);
+void	ss(t_dlist **a, t_dlist **b, int print);
 void	px(t_dlist **x, t_dlist **y, char c);
 void	rx(t_dlist **x, char c);
-void	rr(t_dlist **a, t_dlist **b);
+void	rr(t_dlist **a, t_dlist **b, int print);
 void	rrx(t_dlist **x, char c);
-void	rrr(t_dlist **a, t_dlist **b);
+void	rrr(t_dlist **a, t_dlist **b, int print);
 int		peek(t_dlist	*x);
 t_dlist	*find_in_list(t_dlist *x, int index);
 int		is_node_sort(t_dlist *x, t_dlist *y);

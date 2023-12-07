@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 11:04:21 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 11:18:19 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:21:30 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
 	{
 		while (da->mov > 0 && db->mov > 0)
 		{
-			rr(a, b);
+			rr(a, b, 1);
 			da->mov--;
 			db->mov--;
 		}
@@ -27,7 +27,7 @@ static void	two_shifts(t_dlist **a, t_dlist **b, t_dir *da, t_dir *db)
 	{
 		while (da->mov > 0 && db->mov > 0)
 		{
-			rrr(a, b);
+			rrr(a, b, 1);
 			da->mov--;
 			db->mov--;
 		}

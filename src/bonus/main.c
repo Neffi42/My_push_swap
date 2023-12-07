@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 08:27:42 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 10:06:13 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:34:32 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,6 @@ int	main(int ac, char **av)
 	}
 	else if (!init_stack(&a, ac, av, 1))
 		return (free_stakcs(&a, &b), error());
-	if (is_list_sort(a))
-		return (free_stakcs(&a, &b), 0);
 	init_index(&a, ft_dlstsize(a));
 	if (!read_ope(&a, &b))
 		return (free_stakcs(&a, &b), -1);
