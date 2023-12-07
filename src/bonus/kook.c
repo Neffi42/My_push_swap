@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
+/*   kook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 18:09:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 10:02:13 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/07 10:00:25 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/07 10:06:45 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_BONUS_H
-# define PUSH_SWAP_BONUS_H
+#include "push_swap_bonus.h"
 
-# include "libft.h"
-# include "stack.h"
+int	ko(void)
+{
+	ft_dprintf(1, "KO\n");
+	return (0);
+}
 
-int		read_ope(t_dlist **a, t_dlist **b);
-int		error(void);
-void	free_stakcs(t_dlist **a, t_dlist **b);
-int		peek(t_dlist	*x);
-int		is_node_sort(t_dlist *x, t_dlist *y);
-int		is_list_sort(t_dlist *x);
-int		ok(void);
-int		ko(void);
-
-#endif
+int	ok(void)
+{
+	ft_dprintf(1, "OK\n");
+	return (0);
+}

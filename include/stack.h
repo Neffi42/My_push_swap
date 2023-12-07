@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_bonus.h                                  :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 18:09:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 10:02:13 by abasdere         ###   ########.fr       */
+/*   Created: 2023/12/07 09:33:13 by abasdere          #+#    #+#             */
+/*   Updated: 2023/12/07 09:35:00 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_BONUS_H
-# define PUSH_SWAP_BONUS_H
+#ifndef STACK_H
+# define STACK_H
 
 # include "libft.h"
-# include "stack.h"
 
-int		read_ope(t_dlist **a, t_dlist **b);
-int		error(void);
-void	free_stakcs(t_dlist **a, t_dlist **b);
+void	sx(t_dlist **x, char c);
+void	ss(t_dlist **a, t_dlist **b);
+void	px(t_dlist **x, t_dlist **y, char c);
+void	rx(t_dlist **x, char c);
+void	rr(t_dlist **a, t_dlist **b);
+void	rrx(t_dlist **x, char c);
+void	rrr(t_dlist **a, t_dlist **b);
 int		peek(t_dlist	*x);
+t_dlist	*find_in_list(t_dlist *x, int index);
 int		is_node_sort(t_dlist *x, t_dlist *y);
 int		is_list_sort(t_dlist *x);
-int		ok(void);
-int		ko(void);
+void	free_stakcs(t_dlist **a, t_dlist **b);
+int		error(void);
+void	print_dlist(t_dlist *x, char c);
 
 #endif
