@@ -61,5 +61,6 @@ bonus: $(LIB_DIR)/$(LIB) $(STACK_OBJ) $(BONUS_OBJ)
 
 norm:
 	@norminette $(SRC_DIR) | awk '/Error/'
+	@norminette $(INCLUDE) | awk '/Error/'
 
 .PHONY = all clean fclean re norm bonus
