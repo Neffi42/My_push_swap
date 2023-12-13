@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/06 10:04:35 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:44:57 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,13 +113,13 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac == 2)
 	{
-		ac = count_words(av[1], ' ');
+		ac = ft_count_words(av[1], ' ');
 		av = ft_split(av[1], ' ');
 		if (!av)
 			return (error());
 		if (!init_stack(&a, ac, av, 0))
-			return (free_split(av), free_stakcs(&a, &b), error());
-		free_split(av);
+			return (ft_free_split(av), free_stakcs(&a, &b), error());
+		ft_free_split(av);
 	}
 	else if (!init_stack(&a, ac, av, 1))
 		return (free_stakcs(&a, &b), error());

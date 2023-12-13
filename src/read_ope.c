@@ -6,7 +6,7 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 08:36:59 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 10:36:23 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:47:12 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	read_ope(t_dlist **a, t_dlist **b)
 {
 	char	*s;
 
-	s = get_next_line(0);
+	s = ft_get_next_line(0);
 	if (!s && is_list_sort(*a))
 		return (1);
 	else if (!s)
@@ -54,7 +54,7 @@ int	read_ope(t_dlist **a, t_dlist **b)
 	{
 		if (exec_ope(a, b, s) == -1)
 			return (0);
-		s = get_next_line(0);
+		s = ft_get_next_line(0);
 	}
 	if (!is_list_sort(*a) || ft_dlstsize(*b))
 		return (ko());

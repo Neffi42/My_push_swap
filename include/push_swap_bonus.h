@@ -6,14 +6,14 @@
 /*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:09:25 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/07 10:02:13 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:48:27 by abasdere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
 # define PUSH_SWAP_BONUS_H
 
-# include "libft.h"
+# include "../libft/include/libft.h"
 # include "stack.h"
 
 int		read_ope(t_dlist **a, t_dlist **b);
