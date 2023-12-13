@@ -121,11 +121,7 @@ fcleanlib:
 	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
 
 .PHONY: relib
-relib:
-	@echo "$(YELLOW)$(WD) ./$(LIBFT_DIR)$(DEFAULT)"
-	@make fclean -C $(LIBFT_DIR) $(LIB_FLAGS)
-	@make -C $(LIBFT_DIR) $(LIB_FLAGS)
-	@echo "$(YELLOW)$(WD) ./$(DEFAULT)"
+relib: fcleanlib $(LIBFT)
 
 .PHONY:
 bre: bclean bonus
