@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abasdere <abasdere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acroue <acroue@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:41:58 by abasdere          #+#    #+#             */
-/*   Updated: 2023/12/13 14:44:57 by abasdere         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:16:12 by acroue           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ int	main(int ac, char **av)
 		if (!av)
 			return (error());
 		if (!init_stack(&a, ac, av, 0))
-			return (ft_free_split(av), free_stakcs(&a, &b), error());
-		ft_free_split(av);
+			return (ft_free_tab(av), free_stakcs(&a, &b), error());
+		ft_free_tab(av);
 	}
 	else if (!init_stack(&a, ac, av, 1))
 		return (free_stakcs(&a, &b), error());
