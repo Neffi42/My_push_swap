@@ -14,10 +14,10 @@ CYAN    = \033[0;36m
 BWHITE    = \033[1;37m
 
 # Directories
-SRC_DIR = src
+SRCS_DIR = srcs
 STACK_DIR = stack
 BONUS_DIR = bonus
-OBJ_DIR = obj
+OBJ_DIR = objs
 LIBFT_DIR = libft
 
 # Files
@@ -28,11 +28,11 @@ define LIB :=
 endef
 LIB := $(strip $(LIB))
 
-define INCLUDE :=
-	include
-	$(LIBFT_DIR)/include
+define INCLUDES :=
+	includes
+	$(LIBFT_DIR)/includes
 endef
-INCLUDE := $(strip $(INCLUDE))
+INCLUDES := $(strip $(INCLUDES))
 
 define SRC :=
 	main.c
@@ -69,7 +69,7 @@ BONUS_OBJ := $(patsubst %.c,$(OBJ_DIR)/%.o,$(BONUS_SRC))
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -g3
 RM = rm -rf
-INCLUDE_FLAGS := $(addprefix -I , $(INCLUDE))
+INCLUDES_FLAGS := $(addprefix -I , $(INCLUDES))
 LIB_FLAGS = --no-print-directory --silent
 WD = Working directory:
 
@@ -81,10 +81,10 @@ $(NAME): $(LIBFT) $(STACK_OBJ) $(OBJ)
 	@echo "$(GREEN)* Assembling $(BWHITE)$@$(DEFAULT)"
 	@$(CC) $(CFLAGS) $(STACK_OBJ) $(OBJ) $(LIB) -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "$(CYAN)- Compiling$(DEFAULT) $<"
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDE_FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES_FLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
@@ -133,5 +133,5 @@ bonus: $(LIBFT) $(STACK_OBJ) $(BONUS_OBJ)
 
 .PHONY: norm
 norm:
-	@norminette $(SRC_DIR) | awk '/Error/'
-	@norminette $(INCLUDE) | awk '/Error/'
+	@norminette $(SRCS_DIR) | awk '/Error/'
+	@norminette $(INCLUDES) | awk '/Error/'
